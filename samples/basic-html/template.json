@@ -1,0 +1,38 @@
+{
+  "name": "basic-html",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "html",
+    "web"
+  ],
+  "description": "A basic html5 template",
+  "source": "folder",
+
+  "keys": [
+    {
+      "kid": "s1",
+      "name": "file_name",
+      "default": "index",
+      "required": true,
+      "description": "Your HTML File name: "
+    },
+    {
+      "kid": "s2",
+      "name": "title",
+      "default": "HTML",
+      "required": true,
+      "description": "Page title: "
+    },
+    {
+      "kid": "s3",
+      "name": "description",
+      "default": ""
+    },
+    {
+      "kid": "s4",
+      "name": "author",
+      "default": ""
+    }
+  ]
+}

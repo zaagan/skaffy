@@ -1,0 +1,21 @@
+{
+  "name": "exodus-use-case",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "exodus",
+    ".net",
+    ".net core"
+  ],
+  "description": "Exodus Use case boiler plate",
+  "source": "folder",
+  "keys": [
+    {
+      "kid": "k1",
+      "name": "use_case_name",
+      "required": true,
+      "default": "Potato",
+      "description": "Provide a use case name: "
+    }
+  ]
+}

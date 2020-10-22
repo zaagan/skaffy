@@ -1,0 +1,55 @@
+{
+  "name": "basic-node-project",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "project",
+    "structure"
+  ],
+  "description": "A basic nodejs project",
+  "source": "config",
+
+  "keys": [
+    {
+      "kid": "s1",
+      "name": "project_name",
+      "default": "NewProject",
+      "required": true,
+      "description": "Your project name: "
+    },
+    {
+      "kid": "s2",
+      "name": "home_page",
+      "default": "",
+      "description": "Home page url: "
+    },
+    {
+      "kid": "s3",
+      "name": "author",
+      "default": "",
+      "description": "Author name: "
+    }
+
+  ],
+
+  "structure-type": "linear",
+  "structure":[
+    "{{project_name}}/src/",
+    "{{project_name}}/src/api/",
+    "{{project_name}}/src/config/",
+    "{{project_name}}/src/utils/",
+    "{{project_name}}/src/routes/",
+    "{{project_name}}/src/db/models/",
+    "{{project_name}}/src/db/migrations/",
+    "{{project_name}}/src/db/seeds/",
+    "{{project_name}}/src/db/index.js",
+    "{{project_name}}/src/core/",
+    "{{project_name}}/src/scripts/",
+    "{{project_name}}/src/services/",
+    "{{project_name}}/src/subscribers/",
+    "{{project_name}}/src/tests/",
+    "{{project_name}}/src/app.js",
+    "{{project_name}}/src/server.js",
+    "{{project_name}}/src/README.md"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "your-template-name",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "abc",
+    "def"
+  ],
+  "description": "your-template-description-goes-here",
+  "source": "root",
+
+  "keys": [
+    {
+      "kid": "s1",
+      "name": "your_template_string",
+      "default": "index",
+      "required": true,
+      "description": "A message for prompt: "
+    }
+  ]
+}

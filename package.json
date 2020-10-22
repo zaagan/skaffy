@@ -1,0 +1,32 @@
+{
+  "name": "skaffy",
+  "version": "1.0.0",
+  "description": "Tired of creating the same folders and files, well... Say hi to skaffy",
+  "main": "index.js",
+  "bin": {
+    "skaffy": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "zaagan/skaffy",
+  "keywords": [
+    "boilerplate",
+    "scaffold"
+  ],
+  "author": "zaagan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zaagan/skaffy/issues"
+  },
+  "homepage": "https://github.com/zaagan/skaffy#readme",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "glob": "^7.1.6",
+    "ncp": "^2.0.0",
+    "prompt": "^1.0.0",
+    "yargs": "^16.0.3"
+  }
+}

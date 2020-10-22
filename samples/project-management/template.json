@@ -1,0 +1,86 @@
+{
+  "name": "project-management",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "project",
+    "structure"
+  ],
+  "description": "A basic project  management template",
+  "source": "config",
+
+  "keys": [
+    {
+      "kid": "s1",
+      "name": "project_name",
+      "default": "NewProject",
+      "required": true,
+      "description": "Your project name: "
+    }
+  ],
+
+  "structure-type": "linear",
+  "structure":[
+    "{{project_name}}/Customer Documents/",
+
+    "{{project_name}}/Management/",
+    "{{project_name}}/Management/Contracts/",
+    "{{project_name}}/Management/Customer Feedbacks/",
+    "{{project_name}}/Management/HR/",
+    "{{project_name}}/Management/Proposal/",
+    "{{project_name}}/Management/Reports/",
+
+    "{{project_name}}/Marketing/",
+    "{{project_name}}/Marketing/Customer Feedbacks/",
+
+    "{{project_name}}/Obsolete Documents/",
+
+    "{{project_name}}/Project Documents/",
+    "{{project_name}}/Project Documents/Best Practices/",
+    "{{project_name}}/Project Documents/Checklist/",
+    "{{project_name}}/Project Documents/Content/",
+    "{{project_name}}/Project Documents/Design/",
+    "{{project_name}}/Project Documents/Design/User Interfaces/",
+    "{{project_name}}/Project Documents/Design/Wireframes/",
+    "{{project_name}}/Project Documents/Presentations/",
+    "{{project_name}}/Project Documents/Product Backlog/",
+    "{{project_name}}/Project Documents/Product Backlog/Product backlog-{{project_name}}.xlsx",
+    "{{project_name}}/Project Documents/Product Requirement/",
+    "{{project_name}}/Project Documents/Project Closure/",
+    "{{project_name}}/Project Documents/Project Closure/Project Closure Report.pptx",
+    "{{project_name}}/Project Documents/Project Initiation/",
+    "{{project_name}}/Project Documents/Project Initiation/Project Initiation Document.pptx",
+
+    "{{project_name}}/Project Documents/Release Plan/",
+    "{{project_name}}/Project Documents/Release Plan/Release Plan.pptx",
+    "{{project_name}}/Project Documents/Release Plan/Product Release Checklist.docx",
+    
+    "{{project_name}}/Project Documents/Retrospectives/",
+
+    "{{project_name}}/Project Documents/Sprint Backlog/",
+    "{{project_name}}/Project Documents/Sprint Backlog/Sprint Backlog-{{project_name}}.xlsx",
+
+    "{{project_name}}/Quality Assurance/",
+    "{{project_name}}/Quality Assurance/RCA/",
+    "{{project_name}}/Quality Assurance/RCA/Minutes of RCA.docx",
+    "{{project_name}}/Quality Assurance/Test Documents/",
+    "{{project_name}}/Quality Assurance/Test Documents/Text Record & Report.xlsx",
+
+    "{{project_name}}/Reports/",
+    "{{project_name}}/Reports/Monthly Reports/",
+
+    "{{project_name}}/Support/",
+    "{{project_name}}/Support/Customer Complaints/",
+    "{{project_name}}/Support/Customer Defects/",
+    "{{project_name}}/Support/Customization/",
+
+    "{{project_name}}/Training/",
+    "{{project_name}}/Training/Documents/",
+    "{{project_name}}/Training/Records/",
+
+    "{{project_name}}/Working Documents/",
+    "{{project_name}}/Working Documents/Research/",
+    "{{project_name}}/Working Documents/WIP Documents/"
+
+  ]
+}
