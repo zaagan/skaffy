@@ -1,6 +1,6 @@
 {
   "name": "skaffy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tired of creating the same folders and files, well... Say hi to skaffy",
   "main": "index.js",
   "bin": {
