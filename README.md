@@ -11,7 +11,7 @@ A simple little boilerplate generator for rapid development
 
 
 ```
-$ npm install skaffy
+$ npm install skaffy -g
 $ skaffy -l t # list existing templates
 $ skaffy -u <template-name>  # use a template
 ```
