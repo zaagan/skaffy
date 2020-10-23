@@ -2,14 +2,17 @@ const chalk = require('chalk')
 const boxen = require("boxen");
 log = console.log;
 
-const logSticker = (message) => {
+
+// https://htmlcolorcodes.com
+
+const logSticker = (message, config = null) => {
 	const msg = chalk.white.bold(message);
 	const boxenOptions = {
-		padding: 1,
-		margin: 1,
-		borderStyle: "round",
-		borderColor: "green",
-		backgroundColor: "#555555"
+		padding: config && config.padding ? config.padding : 1,
+		margin: config && config.margin ? config.margin : 1,
+		borderStyle: config && config.borderStyle ? config.borderStyle : 'round',
+		borderColor: config && config.borderColor ? config.borderColor : 'green',		
+		backgroundColor: config && config.backgroundColor ? config.backgroundColor : '#555555',
 	};
 	const msgBox = boxen(msg, boxenOptions);
 	log(msgBox);

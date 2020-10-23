@@ -22,7 +22,7 @@ const {
 } = require('../config/keys')
 
 const displayHelp = () => {
-  logger.logMessage('Syntax:')
+  logger.logHint('syntax:')
   logger.logSuccess('skaffy [-l|--list] [(a)ll | (t)emplates | (f)iles | (h)elp]')
 }
 

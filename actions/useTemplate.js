@@ -11,9 +11,8 @@ const { replaceKeys, replaceContent } = require('../helper/utils')
 // https://www.codota.com/code/javascript/functions/yargs/Argv/command
 
 const displayHelp = () => {
-  logger.logMessage('Syntax:')
+  logger.logHint('syntax:')
   logger.logSuccess('skaffy -u [template-name] [-d <destination-path>]')
-
 }
 
 const useTemplate = (options, args, data) => {
@@ -22,7 +21,7 @@ const useTemplate = (options, args, data) => {
     return;
   }
 
-  let currentPath = destinationPath = path.resolve('');
+  let destinationPath = path.resolve('');
   if (options.destination) {
     destinationPath = path.resolve(options.destination);
   }
@@ -118,7 +117,6 @@ const useTemplate = (options, args, data) => {
         } else {
 
           if (fileHandler.filePathExists(originalFilePath)) {
-
             let newReplacedPath = replaceKeys(preDelimeter, postDelimeter, keyValues, newFilePath)
 
             fileHandler.readFileContent(originalFilePath, function (readContent) {

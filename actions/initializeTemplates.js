@@ -13,7 +13,7 @@ const {
 } = require('../config/messages')
 
 const displayHelp = () => {
-  logger.logMessage('Syntax:')
+  logger.logMessage('syntax:')
   logger.logSuccess('skaffy -i [new|reset]')
 }
 

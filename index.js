@@ -46,7 +46,7 @@ function executeCommand() {
 
 	else if (options.list) actions.listTemplates(options, args, config);
 
-	else if (options.show) actions.showTemplate(options, args);
+	else if (options.show) actions.showTemplate(options, args, config);
 
 	else if (options.fork) actions.forkTemplate(options, args);
 
