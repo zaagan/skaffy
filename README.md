@@ -1,9 +1,12 @@
 # skaffy
 A simple little boilerplate generator for rapid development
 
+Are you tired of creating the same structure of files and directories, then copying the same old snippets to those files again and again ??
 
+Here is what you can do:
+<br />
 
-**Create boilerplates > Save it > Re-use it again and again !!**
+**Create boilerplates > Save it > Re-use it again a million times !!**
 
 <br />
 
@@ -11,9 +14,10 @@ A simple little boilerplate generator for rapid development
 
 
 ```
-$ npm install skaffy -g
+$ npm install skaffy -g  # install it globally
 $ skaffy -l t # list existing templates
 $ skaffy -u <template-name>  # use a template
+$ skaffy -s <template-name>  # preview a templates output
 ```
 
 
@@ -21,7 +25,9 @@ $ skaffy -u <template-name>  # use a template
 
 # Features
 
-- Save and re-use boilerplates instantly 
+- Craft and re-use boilerplates instantly
+- Preview a templates output before deploying 
+- Fork templates from a directory or a repo (Coming soon...).
 
 
 <br />
@@ -145,6 +151,7 @@ $ skaffy -l t  # short approach
 
 <br /> 
 
+
 ### Using an existing template
 
 In order to use a template, you need to navigate to the directory where you wish to use the template. 
@@ -164,6 +171,36 @@ $ skaffy -u basic-html  # short approach
 **Here is how it looks like in action:**
 
 ![skaffy_init](images/skaffy_use_template.png)
+
+
+<br />
+
+
+### Preview the output before use
+
+It is always recommended to preview the results before you use a skaffy template. 
+
+It will provide you with the necessary insights like 
+- what directories will get created, 
+- where and with what names, 
+- how many files will be created, 
+- what will the files contain etc.
+
+
+In your workspace directory where you will actually use the template, you can execute the following command:
+
+```bash
+# syntax :
+$ skaffy [-s|--show] <template-name>
+
+# example :
+$ skaffy -s basic-html  # short approach
+```
+
+
+**Here is how it looks like in action:**
+
+![skaffy_show_template](images/skaffy_show_template.png)
 
 
 <br />
