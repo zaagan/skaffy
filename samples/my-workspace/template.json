@@ -12,7 +12,7 @@
   "keys": [
     {
       "kid": "s1",
-      "name": "{{my_name}}",
+      "name": "my_name",
       "default": "Mine",
       "required": true,
       "description": "Provide a name for your personal folder: "
