@@ -1,0 +1,88 @@
+{
+  "name": "my-workspace",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "personal",
+    "structure"
+  ],
+  "description": "A basic folder structure, how I like to organize things",
+  "source": "config",
+
+  "keys": [
+    {
+      "kid": "s1",
+      "name": "{{my_name}}",
+      "default": "Mine",
+      "required": true,
+      "description": "Provide a name for your personal folder: "
+    }
+  ],
+
+  "structure-type": "linear",
+  "structure":[
+    "/Workspace/",
+    "/Workspace/Personal Projects/",
+    "/Workspace/Personal Projects/Project Name/",
+
+    "/Workspace/Client Name/",
+    "/Workspace/Client Name/Readme.txt",
+    "/Workspace/Office Name/",
+
+    "/Data/",
+    "/Data/Documents/",
+    "/Data/Documents/Family/",
+    "/Data/Documents/Family/Dads/",
+    "/Data/Documents/Family/Moms/",
+    "/Data/Documents/Family/Sisters/",
+    "/Data/Documents/Family/Brothers/",
+    "/Data/Documents/Family/{{my_name}}/",
+    "/Data/Documents/Family/{{my_name}}/Curriculum Vitae/",
+    "/Data/Documents/Family/{{my_name}}/Contracts/",
+    "/Data/Documents/Family/{{my_name}}/Passport/",
+    "/Data/Documents/Family/{{my_name}}/Certificates/",
+    "/Data/Documents/Family/{{my_name}}/Appointment Letters/",
+    "/Data/Documents/Family/{{my_name}}/Signatures/",
+    "/Data/Documents/Family/{{my_name}}/Insurance Papers/",
+    "/Data/Documents/Family/{{my_name}}/Bank Papers/",
+    "/Data/Documents/Family/{{my_name}}/Photos/",
+    "/Data/Documents/Other/",
+
+    "/Data/Books/",
+    "/Data/Books/Suggestions/",
+    "/Data/Books/To Read/",
+    "/Data/Books/Reading/",
+    "/Data/Books/Completed/",
+
+    "/Data/College/",
+    "/Data/College/Assignments/",
+
+    "/Data/Pictures/",
+    "/Data/Pictures/Family/",
+    "/Data/Pictures/College Tour/",
+    "/Data/Pictures/Office Pics/",
+
+    "/Data/Audio/",
+    "/Data/Audio/Rock/",
+    "/Data/Audio/Alternative/",
+    "/Data/Audio/Pop/",
+    "/Data/Audio/Chill/",
+
+    "/Data/Theatre/",
+    "/Data/Theatre/Movies/",
+    "/Data/Theatre/Series/",
+    "/Data/Theatre/Documentaries/",
+    "/Data/Misc/",
+
+    "/Notes/",
+    "/Notes/Things to buy.txt",
+    "/Notes/Reminders.txt",
+
+    "/Playlist/",
+    "/Apps/",
+    "/Games/",
+    "/Archives/",
+    "/Shared/",
+    "/Trash/"
+  ]
+}
