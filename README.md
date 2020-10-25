@@ -348,6 +348,16 @@ Thats it!!
 <br />
 
 
+# Included templates 
+Skaffy comes with a number of pre-defined template which you can implement or improvise for your own usage.
+
+- basic-html (A basic html5 template)
+- exodus-use-case (A basic .NET Use case template that i had crafted for my personal project)
+- project-management (A directory structure that can be used to organize all the files and documents for your next project)
+- my-workspace (A workspace structure which I myself use to organize my personal stuffs)
+
+<br />
+
 # To Do
 
 - [ ] Initialize template directory from terminal.
