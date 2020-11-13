@@ -1,0 +1,154 @@
+{
+  "name": "exodus-use-case-full",
+  "pre-delimeter": "{{",
+  "post-delimeter": "}}",
+  "tags": [
+    "exodus",
+    ".net",
+    ".net core"
+  ],
+  "description": "Exodus Use case boiler plate",
+  "source": "folder",
+  "keys": [
+    {
+      "kid": "k1",
+      "name": "use_case_name",
+      "required": true,
+      "default": "Potato",
+      "description": "Provide a use case name: "
+    },
+    {
+      "kid": "k2",
+      "name": "entity",
+      "required": true,
+      "default": "Potato",
+      "description": "Entity name: "
+    },
+    {
+      "kid": "k3",
+      "name": "action",
+      "required": true,
+      "default": "AddPotato",
+      "description": "What action will the use case perform (eg: AddPotato): "
+    },
+    {
+      "kid": "k4",
+      "name": "controller",
+      "required": true,
+      "default": "Admin",
+      "description": "Controller name (Admin): "
+    }
+  ],
+  "include": [
+    {
+      "onFile": "/Exodus.Core.Application/Interfaces/Gateways/I{{entity}}Repository.cs",
+      "after": {
+        "keyword": "{",
+        "occurance": "last"
+      },
+      "content": "IRepoContent",
+      "newLine": true,
+      "disabled" : false
+    },
+    {
+      "onFile": "/Exodus.Core.Application/Interfaces/Gateways/I{{entity}}Repository.cs",
+      "after": {
+        "keyword": "using Exodus.Core.Domain.Enums;",
+        "occurance": "last"
+      },
+      "content": "IRepoContentUsing",
+      "newLine": true,
+      "disabled" : false
+    },
+    {
+      "onFile": "/Exodus.Persistence/Implementations/{entity}Repository.cs",
+      "before": {
+        "keyword": "}",
+        "occurance": 2
+      },
+      "content": "EntityRepository.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Extensions/UseCaseExtensions.cs",
+      "before": {
+        "keyword": "}",
+        "occurance": 1
+      },
+      "content": "UseCaseExtension/AddUseCase.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Extensions/UseCaseExtensions.cs",
+      "before": {
+        "keyword": "}",
+        "occurance": 2
+      },
+      "content": "UseCaseExtension/AddPresenter.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Extensions/UseCaseExtensions.cs",
+      "before": {
+        "keyword": "namespace Exodus.ReactWebApp.Extensions",
+        "occurance": 1
+      },
+      "content": "UseCaseExtension/IncludeUsing.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Controllers/v1.0/{{controller}}Controller.cs",
+      "after": {
+        "keyword": "using Microsoft.AspNetCore.Mvc;",
+        "occurance": 1
+      },
+      "content": "ControllerMethod/IncludeUsing.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Controllers/v1.0/{{controller}}Controller.cs",
+      "after": {
+        "keyword": "{",
+        "occurance": 2
+      },
+      "content": "ControllerMethod/PrivateFields.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Controllers/v1.0/{{controller}}Controller.cs",
+      "after": {
+        "keyword": "(",
+        "occurance": 1
+      },
+      "content": "ControllerMethod/ControllerMethod.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Controllers/v1.0/{{controller}}Controller.cs",
+      "after": {
+        "keyword": "{",
+        "occurance": 3
+      },
+      "content": "ControllerMethod/ControllerMethodDefinition.cs",
+      "newLine": true,
+      "disabled" : true
+    },
+    {
+      "onFile": "/Exodus.ReactWebApp/Controllers/v1.0/{{controller}}Controller.cs",
+      "after": {
+        "keyword": "{",
+        "occurance": 2
+      },
+      "content": "ControllerMethod/NewAction.cs",
+      "newLine": true,
+      "disabled" : true
+    }
+  ]
+}

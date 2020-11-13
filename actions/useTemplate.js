@@ -3,7 +3,7 @@ const prompt = require('prompt')
 const chalk = require('chalk')
 const logger = require('../helper/logger')
 const path = require('path')
-const { TEMPLATE_CONFIG_FILE, DEFAULT_FILE_CONFIG, LIST_TYPE_ALL, SOURCE_TYPE } = require('../config/defaults')
+const { INCLUDE_DIR, TEMPLATE_CONFIG_FILE, DEFAULT_FILE_CONFIG, LIST_TYPE_ALL, SOURCE_TYPE, NEW_LINE } = require('../config/defaults')
 const { HELP, H } = require('../config/keys')
 const { replaceKeys, replaceContent } = require('../helper/utils')
 
@@ -34,7 +34,7 @@ const useTemplate = (options, args, data) => {
   let templateName = options.use;
   let templatePath = path.join(templatesPath, templateName);
 
-  // Check if  template folder exists
+  // Check if template folder exists
   if (fileHandler.filePathExists(templatePath)) {
 
     let configFilePath = path.join(templatePath, TEMPLATE_CONFIG_FILE);
@@ -75,7 +75,10 @@ const useTemplate = (options, args, data) => {
     let preDelimeter = configData['pre-delimeter'];
     let postDelimeter = configData['post-delimeter'];
 
+    // Deploy file structure
     let fileStructure = configData['structure'];
+    // fileStructure = []
+
     if (fileStructure && fileStructure.length > 0) {
       for (let index = 0; index < fileStructure.length; index++) {
         let fileFolderPath = fileStructure[index];
@@ -93,10 +96,17 @@ const useTemplate = (options, args, data) => {
       }
     }
 
+    // Deploy template files
     let totalFiles = []
     fileHandler.listFiles(templatePath, totalFiles, config);
 
-    let filteredFiles = totalFiles.filter(x => x.name !== TEMPLATE_CONFIG_FILE)
+    let filteredFiles = totalFiles.filter(x => (x.name !== TEMPLATE_CONFIG_FILE))
+
+    filteredFiles = totalFiles.filter(x => (x.name !== INCLUDE_DIR))
+    for (let index = 0; index < filteredFiles.length; index++) {
+      console.log(filteredFiles[index].name);
+    }
+    // filteredFiles = []
 
     if (filteredFiles && filteredFiles.length > 0) {
 
@@ -130,8 +140,172 @@ const useTemplate = (options, args, data) => {
 
       }
     }
+
+    // Include content 
+    let includeContent = configData['include'];
+    if (includeContent && includeContent.length > 0) {
+      for (let index = 0; index < includeContent.length; index++) {
+        let includeItem = includeContent[index];
+
+        if (isIncludeItemValid(includeItem)) {
+          let disabled = includeItem.disabled ? true : false;
+
+          if (!disabled) {
+
+            let onFilePath = includeItem.onFile;
+            let contentFile = includeItem.content;
+            let newLine = includeItem.newLine;
+
+            let onFileFullPath = path.join(destinationPath, onFilePath)
+            let onFileReplacedContent = replaceKeys(preDelimeter, postDelimeter, keyValues, onFileFullPath)
+            let contentFullPath = path.join(templatePath, 'include', contentFile);
+            contentFullPath = replaceKeys(preDelimeter, postDelimeter, keyValues, contentFullPath);
+
+
+            if (!fileHandler.filePathExists(onFileReplacedContent)) {
+              logger.logError(`The specified content file does not exist -> ${onFileReplacedContent}.`);
+              continue;
+            }
+            if (!fileHandler.filePathExists(contentFullPath)) {
+              logger.logError(`The specified content file does not exist -> ${contentFullPath}.`);
+              continue;
+            }
+
+            // Append content from this file > > > 
+            fileHandler.readFileContent(contentFullPath, function (includeContent) {
+
+              // To This file > >
+              fileHandler.readFileContent(onFileReplacedContent, function (fileContent) {
+                // logger.logHint('To Replace content on :')
+                // console.log(fileContent);
+                // Replace types : after | before | between
+                // occurance : first | last start | end | n
+                var keyword = getKeyword(includeItem, fileContent);
+                var keywordLength = keyword.length;
+                var indexes = getKeywordIndices(includeItem, fileContent);
+                var occurance = getOccuranceOf(includeItem);
+
+                if (indexes && indexes.length > 0) {
+
+                  var totalOccurances = indexes.length;
+                  let replacePoint = indexes[totalOccurances - 1];
+                  // if (replaceAfterOccurance == 'start') replacePoint = 0;
+                  if (occurance == 'first') replacePoint = indexes[0];
+                  if (occurance == 'last') replacePoint = indexes[totalOccurances - 1];
+                  if (occurance && isNumeric(occurance)) {
+                    let occuranceNum = parseInt(occurance)
+                    replacePoint = indexes[occuranceNum - 1];
+                  }
+
+                  // CONTENT TO APPEND
+                  let contentToAppend = '';
+                  contentToAppend += keyword;
+                  if (newLine) contentToAppend += NEW_LINE;
+                  contentToAppend += includeContent;
+                  if (newLine) contentToAppend += NEW_LINE;
+
+                  // PERFORM REPLACE
+
+                  let fullModifiedContent = ''
+                  if (includeItem.after) {
+                    let contentAfterIndex = fileContent.substr(replacePoint + keywordLength, fileContent.length)
+                    let newContent = fileContent.substr(0, replacePoint) + contentToAppend + contentAfterIndex;
+                    fullModifiedContent = replaceContent(preDelimeter, postDelimeter, keyValues, newContent)
+                  }
+
+                  if (includeItem.before) {
+                    let contentBeforeIndex = fileContent.substr(0, replacePoint - 1);
+                    let newContent = contentBeforeIndex + contentToAppend + fileContent.substr(replacePoint + keywordLength, fileContent.length);
+                    // let newContent = fileContent.substr(0, replacePoint) + contentToAppend + contentAfterIndex;
+                    fullModifiedContent = replaceContent(preDelimeter, postDelimeter, keyValues, newContent)
+                  }
+
+                  logger.logSticker(fullModifiedContent, {
+                    margin: 0,
+                    borderStyle: 'classic',
+                    borderColor: 'green',
+                    backgroundColor: 'black'
+                  });
+
+                  fileHandler.createFile(onFileReplacedContent, fullModifiedContent, function () {
+
+                    logger.logHighlights(`Content written to ${onFileReplacedContent} with ${includeItem.content}`);
+
+                  });
+                }
+              });
+
+            });
+          } else {
+            logger.logWarning(`${includeItem.content} was skipped because it was disabled.`);
+          }
+
+
+        } else {
+          logger.logError(`Invalid include configuration at ${index} on item ${JSON.parse(includeItem)}`);
+        }
+
+
+      }
+    }
+
+
+    function getKeyword(includeItem) {
+      let keyword = '';
+      if (includeItem.after) keyword = includeItem.after.keyword;
+      if (includeItem.before) keyword = includeItem.before.keyword;
+      return keyword;
+    }
+
+    function getKeywordIndices(includeItem, fileContent) {
+      let keyword = getKeyword(includeItem);
+      var indexes = [];
+      indexes = getIndicesOf(keyword, fileContent);
+      return indexes;
+    }
+
+    function getOccuranceOf(includeItem) {
+      let occurance = '';
+      if (includeItem.after) occurance = includeItem.after.occurance;
+      if (includeItem.before) occurance = includeItem.before.occurance;
+      return occurance;
+    }
+
+
+    function isNumeric(str) {
+      if (typeof str != "string") return false;
+      return !isNaN(str) && !isNaN(parseFloat(str))
+    }
+
+    function isIncludeItemValid(includeItem) {
+      return (includeItem && includeItem.onFile && includeItem.content &&
+        (includeItem.after || includeItem.before || includeItem.between));
+    }
+
+    function getIndicesOf(searchStr, str, caseSensitive) {
+      var searchStrLen = searchStr.length;
+      if (searchStrLen == 0) {
+        return [];
+      }
+      var startIndex = 0, index, indices = [];
+      if (!caseSensitive) {
+        str = str.toLowerCase();
+        searchStr = searchStr.toLowerCase();
+      }
+      while ((index = str.indexOf(searchStr, startIndex)) > -1) {
+        indices.push(index);
+        startIndex = index + searchStrLen;
+      }
+      return indices;
+    }
+
+
     logger.logHint('Template deployed.')
   }
+}
+
+String.prototype.replaceAt = function (index, replacement) {
+  return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 }
 
 module.exports = useTemplate

@@ -358,6 +358,60 @@ Skaffy comes with a number of pre-defined template which you can implement or im
 
 <br />
 
+
+# Include Content
+
+Skaffy also has the ability to include content -  `after, before or between` the occurance of the `first, last, integer: (n)th` keyword or at the `start` or the `end` of the file.
+
+- `onFile`: relative path to the destination file
+- `after/before/between`: location in the file
+- `occurance`: 
+  - `start`: at the beginning of the file (<b>note</b>: ignores the keyword)
+  - `end`: at the end of the file (<b>note</b>: ignores the keyword)
+  - `first`: after/before the first occurance of a keyword
+  - `last`: after/before the last occurance of a keyword
+  - `n`: after/before the nth occurance of a keyword
+- `contentFile`: path to the file in `template_name/include/file_name` containing the content to be included.
+- `newLine`: include on a new line (boolean: true/false)
+
+Here are  the different configurations that are available for content append logic.
+
+<br />
+
+### Syntax
+```bash
+    {
+      "onFile": "<file-path-from-the-template-root>",
+      "after|before|between": {
+        "keyword" : "your-keyword",
+        "keywords" : [ "first-keyword", "last-keyword" ],  #applied only for between
+        "occurance": "start|end|first|last|n"
+      },
+      "contentFile": "IRepoContent",  #content from template/append/file_name
+      "newLine": true
+    }
+```
+
+
+<br />
+
+### Sample 1
+#### appendBefore
+```bash
+    {
+      "onFile": "MyApp/Models/Roles.cs",
+      "after": {
+        "keyword" : "{",
+        "occurance": "last"
+      },
+      "content": "Role" #content from template/append/file_name
+    }
+```
+
+
+
+<br />
+
 # To Do
 
 - [ ] Initialize template directory from terminal.

@@ -1,0 +1,1 @@
+        Task<{{use_case_name}}Response> {{action}}({{use_case_name}}Request request, ICollection<Message> errors);
