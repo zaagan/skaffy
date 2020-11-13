@@ -14,3 +14,4 @@ exports.F = 'f'
 
 exports.NEW = 'new'
 exports.RESET = 'reset'
+exports.CLEAR = 'clear'

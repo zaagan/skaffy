@@ -1,5 +1,6 @@
 const CONFIG_FILE_NAME = "skaffy.json";
 const TEMPLATE_CONFIG_FILE = "template.json";
+const INCLUDE_DIR = "include";
 const DEFAULT_TEMPLATE_DIR = 'skaffy_templates';
 
 const ENV_VARIABLES = [
@@ -29,9 +30,14 @@ const STRUCTURE_TYPE = {
 
 const INIT_TYPE = {
 	NEW: 'new',
-	RESET: 'reset'
+	RESET: 'reset',
+	CLEAR: 'clear'
 };
 
+const NEW_LINE = '\r\n';
+
+exports.INCLUDE_DIR = INCLUDE_DIR;
+exports.NEW_LINE = NEW_LINE;
 exports.INIT_TYPE = INIT_TYPE;
 exports.SOURCE_TYPE = SOURCE_TYPE;
 exports.TEMPLATE_CONFIG_FILE = TEMPLATE_CONFIG_FILE;
