@@ -106,7 +106,7 @@ You can leave it as default or update it later on. *( Pressing enter and moving 
 Running skaffy for the first time will automatically execute the following command:
 
 ```bash
-$ scaff -i new
+$ skaffy -i new
 ```
 
 Scaffy comes with a number of pre-defined templates as samples which you can use or improvise upon as per your need. This command will load those templates in your templates folder at your disposal.
