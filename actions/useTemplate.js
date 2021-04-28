@@ -102,7 +102,7 @@ const useTemplate = (options, args, data) => {
 
     let filteredFiles = totalFiles.filter(x => (x.name !== TEMPLATE_CONFIG_FILE))
 
-    filteredFiles = totalFiles.filter(x => (x.name !== INCLUDE_DIR))
+    filteredFiles = filteredFiles.filter(x => (x.name !== INCLUDE_DIR))
     for (let index = 0; index < filteredFiles.length; index++) {
       console.log(filteredFiles[index].name);
     }
